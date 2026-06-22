@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa do Mundo FIFA 2026 • Verde e Amarelo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        :root {
+            --green: #00A651;
+            --yellow: #FFCD00;
+            --black: #0F0F0F;
+            --dark: #1A1A1A;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0F0F0F;
+            color: #ddd;
+            line-height: 1.6;
+        }
+        header {
+            background: var(--black);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            color: var(--yellow);
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--yellow); }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), 
+                        url('https://source.unsplash.com/random/1920x1080/?brazil-worldcup') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 70px;
+        }
+        .hero-content h1 {
+            font-size: 4.8rem;
+            color: var(--yellow);
+            text-shadow: 0 5px 20px rgba(0,0,0,0.9);
+        }
+        .hero-content p {
+            font-size: 1.6rem;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .btn {
+            padding: 16px 45px;
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.4s;
+            margin: 10px;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            background: #ffeb3b;
+        }
+
+        section {
+            padding: 100px 0;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        h2 {
+            font-size: 3.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--yellow);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: #1A1A1A;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 166, 81, 0.3);
+        }
+        .card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 1.8rem;
+        }
+
+        /* Tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1A1A1A;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        th {
+            background: var(--green);
+            color: white;
+        }
+
+        /* Accordion */
+        .accordion {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .accordion-item {
+            background: #1A1A1A;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            padding: 1.2rem 1.5rem;
+            background: #222;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        footer {
+            background: var(--black);
+            color: #aaa;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-trophy"></i> COPA DO MUNDO
+            </div>
+            <ul class="nav-links">
+                <li><a href="#historia">História</a></li>
+                <li><a href="#vencedores">Vencedores</a></li>
+                <li><a href="#momentos">Momentos</a></li>
+                <li><a href="#2026">Copa 2026</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>A MAIOR COMPETIÇÃO DO MUNDO</h1>
+            <p>22 edições • 5 títulos brasileiros • Paixão que une o planeta</p>
+            <button class="btn" onclick="document.getElementById('historia').scrollIntoView({behavior: 'smooth'})">
+                Conhecer a História
+            </button>
+        </div>
+    </section>
+
+    <!-- HISTÓRIA -->
+    <section id="historia">
+        <h2>História da Copa do Mundo</h2>
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">1930 - Primeira Copa <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content"><p>Realizada no Uruguai. Apenas 13 seleções. Uruguai campeão.</p></div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">1958 - Nascimento de uma Lenda <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content"><p>Pelé, com apenas 17 anos, leva o Brasil ao primeiro título.</p></div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">1970 - O Futebol-Arte <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content"><p>Brasil de Pelé, Tostão, Jairzinho e Rivelino conquista o tricampeonato.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VENCEDORES -->
+    <section id="vencedores" style="background: #1A1A1A;">
+        <h2>Campeões por Ano</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ano</th>
+                    <th>Campeão</th>
+                    <th>Final</th>
+                    <th>Sede</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1958</td><td><strong>Brasil</strong></td><td>5×2 Suécia</td><td>Suécia</td></tr>
+                <tr><td>1962</td><td><strong>Brasil</strong></td><td>3×1 Tchecoslováquia</td><td>Chile</td></tr>
+                <tr><td>1970</td><td><strong>Brasil</strong></td><td>4×1 Itália</td><td>México</td></tr>
+                <tr><td>1994</td><td><strong>Brasil</strong></td><td>0×0 (3×2 pen) Itália</td><td>EUA</td></tr>
+                <tr><td>2002</td><td><strong>Brasil</strong></td><td>2×0 Alemanha</td><td>Coreia/Japão</td></tr>
+                <tr><td>2022</td><td>Argentina</td><td>3×3 (4×2 pen) França</td><td>Qatar</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- MOMENTOS -->
+    <section id="momentos">
+        <h2>Momentos Históricos</h2>
+        <div class="card-grid">
+            <div class="card">
+                <img src="https://source.unsplash.com/random/600x400/?pelé" alt="Pelé">
+                <div class="card-content">
+                    <h3>Pelé - O Rei do Futebol</h3>
+                    <p>Único jogador com 3 Copas do Mundo. Marcou 12 gols em Copas.</p>
+                    <button class="btn" style="padding:10px 25px; font-size:1rem;" onclick="showModal('Pelé foi o maior jogador de todos os tempos.')">Saiba Mais</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://source.unsplash.com/random/600x400/?maradona" alt="Maradona">
+                <div class="card-content">
+                    <h3>Mão de Deus (1986)</h3>
+                    <p>Maradona contra a Inglaterra: gol com a mão e o gol do século.</p>
+                    <button class="btn" style="padding:10px 25px; font-size:1rem;" onclick="showModal('Um dos dias mais mágicos da história das Copas.')">Ver Detalhes</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://source.unsplash.com/random/600x400/?mbappe" alt="Mbappé">
+                <div class="card-content">
+                    <h3>Mbappé - O Novo Fenômeno</h3>
+                    <p>Artilheiro da Copa 2022 com 8 gols aos 23 anos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COPA 2026 -->
+    <section id="2026" style="background: linear-gradient(#00A651, #003d1f); color: white;">
+        <h2>Copa do Mundo 2026</h2>
+        <div style="text-align:center; font-size:1.5rem; max-width:900px; margin:0 auto;">
+            <p><strong>Sedes:</strong> Canadá • Estados Unidos • México</p>
+            <p><strong>Seleções:</strong> 48 (maior edição da história)</p>
+            <p><strong>Período:</strong> 11 de junho a 19 de julho de 2026</p>
+            <button class="btn" onclick="alert('Em breve mais informações sobre a Copa 2026!')">Quero mais informações</button>
+        </div>
+    </section>
+
+    <!-- QUIZ INTERATIVO -->
+    <section id="quiz" style="background:#1A1A1A;">
+        <h2>Teste seus Conhecimentos</h2>
+        <div style="text-align:center;">
+            <p>Quantas Copas do Mundo o Brasil já ganhou?</p>
+            <button class="btn" onclick="alert('✅ Resposta: 5!')">5</button>
+            <button class="btn" onclick="alert('❌ Quase... são 5!')">4</button>
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div style="background:#1A1A1A; padding:40px; border-radius:16px; max-width:500px; color:white; text-align:center;">
+            <h3 id="modalTitle"></h3>
+            <p id="modalText"></p>
+            <button class="btn" onclick="closeModal()">Fechar
